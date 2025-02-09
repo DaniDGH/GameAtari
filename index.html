@@ -15,11 +15,23 @@
             display: block;
             margin: auto;
         }
+        .controls {
+            margin-top: 10px;
+        }
+        .btn {
+            font-size: 20px;
+            padding: 10px;
+            margin: 5px;
+        }
     </style>
 </head>
 <body>
     <h1>Breakout Atari</h1>
     <canvas id="gameCanvas" width="480" height="320"></canvas>
+    <div class="controls">
+        <button class="btn" id="leftBtn">⬅️</button>
+        <button class="btn" id="rightBtn">➡️</button>
+    </div>
     <script>
         const canvas = document.getElementById("gameCanvas");
         const ctx = canvas.getContext("2d");
@@ -39,7 +51,10 @@
         
         document.addEventListener("keydown", keyDownHandler);
         document.addEventListener("keyup", keyUpHandler);
-        document.addEventListener("touchmove", touchMoveHandler);
+        document.getElementById("leftBtn").addEventListener("mousedown", () => leftPressed = true);
+        document.getElementById("leftBtn").addEventListener("mouseup", () => leftPressed = false);
+        document.getElementById("rightBtn").addEventListener("mousedown", () => rightPressed = true);
+        document.getElementById("rightBtn").addEventListener("mouseup", () => rightPressed = false);
         
         function keyDownHandler(e) {
             if (e.key === "Right" || e.key === "ArrowRight") {
@@ -54,13 +69,6 @@
                 rightPressed = false;
             } else if (e.key === "Left" || e.key === "ArrowLeft") {
                 leftPressed = false;
-            }
-        }
-        
-        function touchMoveHandler(e) {
-            const touchX = e.touches[0].clientX - canvas.offsetLeft;
-            if (touchX > 0 && touchX < canvas.width) {
-                paddleX = touchX - paddleWidth / 2;
             }
         }
         
