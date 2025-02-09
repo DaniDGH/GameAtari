@@ -56,6 +56,11 @@
         document.getElementById("rightBtn").addEventListener("mousedown", () => rightPressed = true);
         document.getElementById("rightBtn").addEventListener("mouseup", () => rightPressed = false);
         
+        document.getElementById("leftBtn").addEventListener("touchstart", () => leftPressed = true);
+        document.getElementById("leftBtn").addEventListener("touchend", () => leftPressed = false);
+        document.getElementById("rightBtn").addEventListener("touchstart", () => rightPressed = true);
+        document.getElementById("rightBtn").addEventListener("touchend", () => rightPressed = false);
+        
         function keyDownHandler(e) {
             if (e.key === "Right" || e.key === "ArrowRight") {
                 rightPressed = true;
