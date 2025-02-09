@@ -39,6 +39,7 @@
         
         document.addEventListener("keydown", keyDownHandler);
         document.addEventListener("keyup", keyUpHandler);
+        document.addEventListener("touchmove", touchMoveHandler);
         
         function keyDownHandler(e) {
             if (e.key === "Right" || e.key === "ArrowRight") {
@@ -53,6 +54,13 @@
                 rightPressed = false;
             } else if (e.key === "Left" || e.key === "ArrowLeft") {
                 leftPressed = false;
+            }
+        }
+        
+        function touchMoveHandler(e) {
+            const touchX = e.touches[0].clientX - canvas.offsetLeft;
+            if (touchX > 0 && touchX < canvas.width) {
+                paddleX = touchX - paddleWidth / 2;
             }
         }
         
